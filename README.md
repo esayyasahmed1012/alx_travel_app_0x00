@@ -1,0 +1,1 @@
+this is a serialztion and model for alx_travel app using django
