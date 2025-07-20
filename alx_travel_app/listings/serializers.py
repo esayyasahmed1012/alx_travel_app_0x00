@@ -10,14 +10,8 @@ class ListingSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'location', 'price_per_night', 'host', 'created_at', 'updated_at', 'is_available']
 
 class BookingSerializer(serializers.ModelSerializer):
-    listing = serializers.PrimaryKeyRelatedField(queryset=Listing.objects.all())
     guest = serializers.ReadOnlyField(source='guest.username')
 
     class Meta:
         model = Booking
         fields = ['id', 'listing', 'guest', 'check_in', 'check_out', 'total_price', 'status', 'created_at']
-
-    def validate(self, data):
-        if data['check_out'] <= data['check_in']:
-            raise serializers.ValidationError("Check-out date must be after check-in date")
-        return data
