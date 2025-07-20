@@ -1,0 +1,1 @@
+this project is database models, creating serializers for API data representation, and implement a management command to seed the database for travelapp
