@@ -1,17 +1,17 @@
-# listings/serializers.py
 from rest_framework import serializers
 from .models import Listing, Booking
 
 class ListingSerializer(serializers.ModelSerializer):
-    host = serializers.ReadOnlyField(source='host.username')
-
+    """Serializer for the Listing model"""
+    
     class Meta:
         model = Listing
-        fields = ['id', 'title', 'description', 'location', 'price_per_night', 'host', 'created_at', 'updated_at', 'is_available']
+        fields = '__all__'  # Includes all fields
+
 
 class BookingSerializer(serializers.ModelSerializer):
-    guest = serializers.ReadOnlyField(source='guest.username')
-
+    """Serializer for the Booking model"""
+    
     class Meta:
         model = Booking
-        fields = ['id', 'listing', 'guest', 'check_in', 'check_out', 'total_price', 'status', 'created_at']
+        fields = '__all__'  # Includes all fields
